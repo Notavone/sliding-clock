@@ -7,7 +7,17 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Original+Surfer&display=swap');
 
+        :root {
+            --body-bg: #dae2f5;
+            --bar-bg: #dfe6f6;
+            --shadow-l: #ebf0fa;
+            --shadow-d: #acbfe9;
+            --text-color: #3e6ccb;
+            --number-color: #bfbfbf;
+        }
+
         body {
+            background-color: var(--body-bg);
             margin: 0;
             overflow: hidden;
         }
@@ -24,25 +34,30 @@
         }
 
         .text {
-            background-color: lavenderblush;
-            border: 1px solid lavender;
-            box-shadow: 5px 5px 5px lavender;
+            font-size: 1.5em    ;
+            background-color: var(--bar-bg);
+            box-shadow: 5px 5px 5px var(--shadow-d), -5px -5px 5px var(--shadow-l);
             border-radius: 50%;
-            margin-left: -6px;
+            margin-left: -10px;
+            margin-top: -10px;
             position: absolute;
             text-align: center;
-            width: 50px;
-            height: 50px;
-            line-height: 50px;
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
             font-family: 'Original Surfer', cursive;
+            color: var(--text-color);
         }
 
         .bar {
             width: 40px;
-            background: lavender;
-            box-shadow: 5px 5px 5px lavenderblush;
-            border-radius: 20px;
+            background: #dfe6f6;
+            box-shadow: 5px 5px 5px var(--shadow-d), -5px -5px 5px var(--shadow-l);
+            border-radius: 15px;
             transition: margin-top ease 0.9s, height ease 10s;
+            line-height: 40px;
+            text-align: center;
+            color: var(--number-color);
         }
 
         .bar-9 {
@@ -102,7 +117,13 @@
         let secondDigit = ~~(date.getHours() / 10);
         let firstDigitBar = document.getElementById("h");
 
-        firstDigitBar.children[1].style.height = secondDigit === 2 ? "calc(4 * 40px)" : "calc(10 * 40px)"
+        if (secondDigit === 2) {
+            firstDigitBar.children[1].style.height = "calc(4 * 40px)"
+            firstDigitBar.children[1].innerHTML = "0<br>1<br>2<br>3<br>4"
+        } else {
+            firstDigitBar.children[1].style.height = "calc(10 * 40px)"
+            firstDigitBar.children[1].innerHTML = "0<br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9"
+        }
 
         editBar(document.getElementById("hh"), secondDigit)
         editBar(firstDigitBar, date.getHours() % 10)
@@ -113,10 +134,21 @@
 
         // date.setSeconds(date.getSeconds() + 1)
     }
+
     update()
     setInterval(() => {
         update();
     }, 1000)
+
+    for (let el of document.querySelectorAll(".bar-9")) {
+        el.innerHTML = "0<br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9"
+    }
+    for (let el of document.querySelectorAll(".bar-5")) {
+        el.innerHTML = "0<br>1<br>2<br>3<br>4<br>5"
+    }
+    for (let el of document.querySelectorAll(".bar-2")) {
+        el.innerHTML = "0<br>1<br>2"
+    }
 
     function editBar(el, n) {
         el.children[0].innerHTML = n
