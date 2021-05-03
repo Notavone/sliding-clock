@@ -1,0 +1,127 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sliding Clock</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Original+Surfer&display=swap');
+
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #container {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+
+            display: flex;
+            justify-content: center;
+            gap: 5vw;
+            transform: translateX(-50%);
+        }
+
+        .text {
+            background-color: lavenderblush;
+            border: 1px solid lavender;
+            box-shadow: 5px 5px 5px lavender;
+            border-radius: 50%;
+            margin-left: -6px;
+            position: absolute;
+            text-align: center;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            font-family: 'Original Surfer', cursive;
+        }
+
+        .bar {
+            width: 40px;
+            background: lavender;
+            box-shadow: 5px 5px 5px lavenderblush;
+            border-radius: 20px;
+            transition: margin-top ease 0.9s, height ease 10s;
+        }
+
+        .bar-9 {
+            height: calc(10 * 40px);
+        }
+
+        .bar-5 {
+            height: calc(6 * 40px);
+        }
+
+        .bar-2 {
+            height: calc(3 * 40px);
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="hh">
+        <div class="text"></div>
+        <div class="bar bar-2"></div>
+    </div>
+    <div id="h">
+        <div class="text"></div>
+        <div class="bar bar-custom-length"></div>
+    </div>
+
+    <div></div>
+
+    <div id="mm">
+        <div class="text"></div>
+        <div class="bar bar-5"></div>
+    </div>
+    <div id="m">
+        <div class="text"></div>
+        <div class="bar bar-9"></div>
+    </div>
+
+    <div></div>
+
+    <div id="ss">
+        <div class="text"></div>
+        <div class="bar bar-5"></div>
+    </div>
+    <div id="s">
+        <div class="text"></div>
+        <div class="bar bar-9"></div>
+    </div>
+</div>
+<script>
+    // let date = new Date();
+    // date.setHours(19)
+    // date.setMinutes(59)
+    // date.setSeconds(50)
+    function update() {
+        let date = new Date();
+
+        let secondDigit = ~~(date.getHours() / 10);
+        let firstDigitBar = document.getElementById("h");
+
+        firstDigitBar.children[1].style.height = secondDigit === 2 ? "calc(4 * 40px)" : "calc(10 * 40px)"
+
+        editBar(document.getElementById("hh"), secondDigit)
+        editBar(firstDigitBar, date.getHours() % 10)
+        editBar(document.getElementById("mm"), ~~(date.getMinutes() / 10))
+        editBar(document.getElementById("m"), date.getMinutes() % 10)
+        editBar(document.getElementById("ss"), ~~(date.getSeconds() / 10))
+        editBar(document.getElementById("s"), date.getSeconds() % 10)
+
+        // date.setSeconds(date.getSeconds() + 1)
+    }
+    update()
+    setInterval(() => {
+        update();
+    }, 1000)
+
+    function editBar(el, n) {
+        el.children[0].innerHTML = n
+        el.children[1].style.marginTop = `calc(${n} * -40px)`
+    }
+</script>
+</body>
+</html>
