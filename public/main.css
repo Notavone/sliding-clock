@@ -45,8 +45,12 @@ body {
     height: 70px;
     line-height: 70px;
     color: var(--text-color);
-    transition: width ease 0.4s, height ease 0.4s, line-height ease 0.4s;
+    transition: all ease-in-out 0.4s;
     margin-top: -15px;
+}
+
+.bubble.expand {
+    transform: scale(1.2);
 }
 
 .bar {
