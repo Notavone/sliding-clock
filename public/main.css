@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Original+Surfer&display=swap');
+
+:root {
+    --body-bg: #d8e2f5;
+    --bar-bg: #e8ebf5;
+    --shadow-l: #ebf0fa;
+    --shadow-d: #acbfe9;
+    --text-color: #303030;
+    --number-color: #6d6d6d;
+}
+
+body {
+    background-color: var(--body-bg);
+    margin: 0;
+    overflow: hidden;
+}
+
+#foreground {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(125deg, rgba(235, 240, 250, 0.5) 0%, rgba(172, 191, 233, 0.8) 100%);
+}
+
+#container {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+
+    display: flex;
+    justify-content: center;
+    gap: 6vw;
+    transform: translateX(-50%);
+}
+
+#container div {
+    display: flex;
+    justify-content: center;
+}
+
+.bubble, .bar {
+    background-color: var(--bar-bg);
+    box-shadow: 3px 5px 10px var(--shadow-d), -3px -5px 10px var(--shadow-l), inset 1px 1px 2px var(--shadow-l);
+    font-family: 'Original Surfer', cursive;
+}
+
+.bubble {
+    font-size: 2em;
+    border-radius: 50%;
+    position: absolute;
+    text-align: center;
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    color: var(--text-color);
+    transition: width ease 0.4s, height ease 0.4s, line-height ease 0.4s;
+    margin-top: -15px;
+}
+
+.bar {
+    font-size: 1.1em;
+    width: 50px;
+    border-radius: 15px;
+    transition: margin-top ease 1s, height ease 1s;
+    line-height: 40px;
+    text-align: center;
+    color: var(--number-color);
+}
+
+.bar-9 {
+    height: calc(10 * 40px);
+}
+
+.bar-5 {
+    height: calc(6 * 40px);
+}
+
+.bar-3 {
+    height: calc(4 * 40px);
+}
+
+.bar-2 {
+    height: calc(3 * 40px);
+}
