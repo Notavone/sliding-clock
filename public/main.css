@@ -15,13 +15,6 @@ body {
     overflow: hidden;
 }
 
-#foreground {
-    position: absolute;
-    height: 100vh;
-    width: 100vw;
-    background: linear-gradient(125deg, rgba(235, 240, 250, 0.5) 0%, rgba(172, 191, 233, 0.8) 100%);
-}
-
 #container {
     position: absolute;
     top: 45%;
