@@ -15,18 +15,20 @@ for (const bar of document.getElementsByClassName("bar-9")) {
     bar.innerHTML = "0<br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9"
 }
 
-
+// debug
 let date = new Date();
-date.setHours(19)
+date.setHours(0)
 date.setMinutes(59)
-date.setSeconds(45)
+date.setSeconds(59)
+
 function update() {
-    // let date = new Date();
+    let date = new Date();
 
     let hourSecondDigit = ~~(date.getHours() / 10);
 
+    console.log(hourSecondDigit );
     let firstDigitBar = h.children[1];
-    if (hourSecondDigit === 2) {
+    if (hourSecondDigit === 2 && +h.children[0].innerHTML !== 2) {
         firstDigitBar.classList.remove("bar-9")
         firstDigitBar.classList.add("bar-3")
         firstDigitBar.innerHTML = "0<br>1<br>2<br>3"
@@ -42,8 +44,9 @@ function update() {
     editBar(m, date.getMinutes() % 10)
     editBar(ss, ~~(date.getSeconds() / 10))
     editBar(s, date.getSeconds() % 10)
-
-    // date.setSeconds(date.getSeconds() + 1)
+    
+    // debug
+    date.setSeconds(date.getSeconds() + 1)
 }
 
 update()
@@ -56,13 +59,12 @@ function editBar(el, n) {
     let bubble = el.children[0];
     let bar = el.children[1];
 
-    if (n !== +bubble.innerHTML) {
+    if (""+n !== bubble.innerHTML) {
+        bubble.innerHTML = n
         bubble.classList.add("expand")
         setTimeout(() => {
             bubble.classList.remove("expand")
         }, 400)
-
     }
-    bubble.innerHTML = n
     bar.style.marginTop = `calc(${n} * -40px)`
 }
