@@ -12,18 +12,17 @@
 body {
     background-color: var(--body-bg);
     margin: 0;
+    padding: 0;
     overflow: hidden;
+    display: grid;
+    place-items: center;
 }
 
 #container {
-    position: absolute;
-    top: 45%;
-    left: 50%;
-
     display: flex;
     justify-content: center;
     gap: 6vw;
-    transform: translateX(-50%);
+    height: 0;
 }
 
 #container div {
